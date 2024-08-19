@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personas | Listado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .logout-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .logout-container form {
+            margin: 0;
+        }
+
+        .logout-container button {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-container button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+<h1>Listado de personas</h1>
+<ul>
+  <li th:each="persona : ${personas}">
+    <span th:text="${persona.nombre}">Nombre</span>
+    (<span th:text="${persona.apellidos}">Apellido</span>)
+  </li>
+</ul>
+<div class="logout-container">
+    <form th:action="@{/logout}" method="POST">
+        <button type="submit">Cerrar Sesión</button>
+    </form>
+</div>
+</body>
+</html>

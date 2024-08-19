@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reuniones | Listado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .logout-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .logout-container form {
+            margin: 0;
+        }
+
+        .logout-container button {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-container button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+<h1>Listado de reuniones</h1>
+<ul>
+    <li th:each="reunion : ${reuniones}">
+        <span th:text="${reunion.asunto}">Asunto</span>
+        (<span th:text="${#temporals.format(reunion.fecha, 'dd-MMM-yyy')}">Fecha</span>)
+
+    <ol>
+        <li th:each="persona : ${reunion.asistentes}">
+            <span th:text="${persona.nombre}">Nombre</span>
+            (<span th:text="${persona.apellidos}">Apellido</span>)
+    </ol>
+
+</ul>
+<div class="logout-container">
+    <form th:action="@{/logout}" method="POST">
+        <button type="submit">Cerrar Sesión</button>
+    </form>
+</div>
+</body>
+
+</html>
